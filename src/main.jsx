@@ -34,7 +34,7 @@ function RootComponent() {
 
   if (isNorthAfricanUser === null) {
     // عرض صفحة تحميل أثناء التحقق من الموقع
-    return <div><h1 className='flex text-center md:text-5xl items-center justify-center'>جارٍ التحميل...</h1></div>;
+    return <div><h1 className='flex text-center text-2xl h-100 md:text-5xl items-center justify-center'>جارٍ التحميل...</h1></div>;
   }
 
   // عرض المكون المناسب وفقًا للموقع
