@@ -7,7 +7,7 @@
 }
 
 .custom-video {
-    width: 30%; /* Ajuste la largeur de la vidéo */
+    width: 50%; /* Ajuste la largeur de la vidéo */
     max-width: 100%;
     height: auto; /* Ajuste la hauteur automatiquement */
     border-radius: 20px; /* Bordures arrondies */
