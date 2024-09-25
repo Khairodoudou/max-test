@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import tem from './images/tem.mp4';
 import frhan from './images/frhan.avif';
+import coverImage from './images/logoo.jpg'; // Import de l'image de couverture
+import './styles.css'; // Import de votre fichier CSS personnalisé
+
 
 export default function Sectionend() {
     const [percentage, setPercentage] = useState(0);
@@ -51,8 +54,8 @@ export default function Sectionend() {
         <section ref={sectionRef} className="py-10">
             <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
                 <div className="grid items-center grid-cols-1 gap-y-6 md:grid-cols-2 md:gap-x-24">
-                    <div className='border-white flex justify-center items-center'>
-                        <video className="text-center md:w-full h-96 rounded-3xl p-5 flex items-center justify-center" controls>
+                    <div className='video-container flex justify-center items-center'>
+                        <video className="custom-video text-center md:w-full h-96 rounded-3xl p-5 flex items-center justify-center" controls poster={coverImage}>
                             <source src={tem} type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
