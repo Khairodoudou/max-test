@@ -11,21 +11,21 @@ function RootComponent() {
   useEffect(() => {
     const checkLocation = async () => {
       try {
-        // استدعاء واجهة برمجة التطبيقات ip-api.com للحصول على الموقع الجغرافي حسب IP
-        const response = await axios.get('http://ip-api.com/json/');
-        console.log('رد من واجهة برمجة التطبيقات:', response.data); // عرض البيانات المستلمة
-        const countryCode = response.data.countryCode; // استرداد رمز البلد
-        console.log('رمز البلد:', countryCode); // عرض رمز البلد
+        // استدعاء API من ipinfo.io باستخدام HTTPS ورمز الـ API الخاص بك
+        const response = await axios.get('https://ipinfo.io/json?token=b313b3172f443f');
+        console.log('رد من API:', response.data);  // طباعة الرد في console للتحقق
+        const countryCode = response.data.country;  // الحصول على رمز البلد
+        console.log('رمز البلد:', countryCode);  // طباعة رمز البلد للتحقق
 
         // التحقق مما إذا كان رمز البلد ينتمي إلى الجزائر (DZ) أو تونس (TN) أو المغرب (MA)
         if (countryCode === 'DZ' || countryCode === 'TN' || countryCode === 'MA') {
-          setIsNorthAfricanUser(true);
+          setIsNorthAfricanUser(true);  // المستخدم من شمال إفريقيا
         } else {
-          setIsNorthAfricanUser(false);
+          setIsNorthAfricanUser(false);  // المستخدم ليس من شمال إفريقيا
         }
       } catch (error) {
-        console.error("خطأ أثناء استرجاع عنوان IP: ", error);
-        setIsNorthAfricanUser(false); // بشكل افتراضي، عرض <Test /> في حالة الخطأ
+        console.error("خطأ أثناء استرجاع الموقع:", error);
+        setIsNorthAfricanUser(false);  // في حال حدوث خطأ، عرض <Test />
       }
     };
 
