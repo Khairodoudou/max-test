@@ -1,9 +1,9 @@
-import { StrictMode, useState, useEffect } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
-import Test from "./Test.jsx";
-import "./index.css";
-import axios from "axios";
+import { StrictMode, useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+import axios from 'axios';
+import App from './App.jsx';
+import Test from './Test.jsx';
+import './index.css';
 
 function RootComponent() {
   const [isNorthAfricanUser, setIsNorthAfricanUser] = useState(null);
@@ -11,27 +11,21 @@ function RootComponent() {
   useEffect(() => {
     const checkLocation = async () => {
       try {
-        // Appel à l'API ip-api.com
-        const response = await axios.get("http://ip-api.com/json/");
-        console.log("Response from API:", response.data); // Log des données reçues
-        const countryCode = response.data.countryCode; // Récupérer le code du pays
+        // استدعاء واجهة برمجة التطبيقات ip-api.com للحصول على الموقع الجغرافي حسب IP
+        const response = await axios.get('http://ip-api.com/json/');
+        console.log('رد من واجهة برمجة التطبيقات:', response.data); // عرض البيانات المستلمة
+        const countryCode = response.data.countryCode; // استرداد رمز البلد
+        console.log('رمز البلد:', countryCode); // عرض رمز البلد
 
-        // Vérifiez si le code du pays est pour l'Algérie (DZ), la Tunisie (TN) ou le Maroc (MA)
-        if (
-          countryCode === "DZ" ||
-          countryCode === "TN" ||
-          countryCode === "MA"
-        ) {
+        // التحقق مما إذا كان رمز البلد ينتمي إلى الجزائر (DZ) أو تونس (TN) أو المغرب (MA)
+        if (countryCode === 'DZ' || countryCode === 'TN' || countryCode === 'MA') {
           setIsNorthAfricanUser(true);
         } else {
           setIsNorthAfricanUser(false);
         }
       } catch (error) {
-        console.error(
-          "Erreur lors de la récupération de l'adresse IP : ",
-          error
-        );
-        setIsNorthAfricanUser(false); // Par défaut, afficher <Test /> en cas d'erreur
+        console.error("خطأ أثناء استرجاع عنوان IP: ", error);
+        setIsNorthAfricanUser(false); // بشكل افتراضي، عرض <Test /> في حالة الخطأ
       }
     };
 
@@ -39,15 +33,17 @@ function RootComponent() {
   }, []);
 
   if (isNorthAfricanUser === null) {
-    // Afficher une page de chargement pendant que la vérification a lieu
-    return <div>Chargement...</div>;
+    // عرض صفحة تحميل أثناء التحقق من الموقع
+    return <div>جارٍ التحميل...</div>;
   }
 
+  // عرض المكون المناسب وفقًا للموقع
   return isNorthAfricanUser ? <App /> : <Test />;
 }
 
-createRoot(document.getElementById("root")).render(
+// بدء التطبيق
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RootComponent />
-  </StrictMode>
+  </StrictMode>,
 );
